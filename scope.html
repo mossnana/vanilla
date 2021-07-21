@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>This is JavaScript</title>
+
+  <script>
+    // Pattern 1
+    console.log(this) // window object
+
+    // Pattern 2
+    function logThis() {
+      console.log(this)
+    }
+    logThis() // window object
+
+    // Pattern 3
+    const thisObject = {
+      value: 0,
+      logThis() {
+        console.log(this)
+      }
+    }
+    thisObject.logThis() // thisObject object
+
+    // Pattern 4
+    const thisObjectAgain = {
+      value: 0,
+      logThis() {
+        function logThisAgain() {
+          console.log(this)
+        }
+        logThisAgain()
+      }
+    }
+    thisObjectAgain.logThis() // window object
+
+    // Pattern 5
+    "use strict"
+    function logThisAgainForSecondChance() {
+      console.log(this)
+    }
+    logThisAgainForSecondChance() // undefined
+
+    // Pattern 6
+    "use strict"
+    function logThisAgainForSecondChanceWithCall() {
+      console.log(this)
+    }
+    logThisAgainForSecondChanceWithCall.call(this) // window
+
+    // Pattern 7
+    "use strict"
+    const that = this
+    function logWithThat() {
+      console.log(that)
+    }
+    logWithThat() // window
+
+    // Pattern 8
+    "use strict"
+    const logThisWithArrow = () => {
+      console.log(this)
+    }
+    logThisWithArrow() // window
+
+    // Pattern 9
+    "use strict"
+    const finalObject = {
+      value: 0,
+      checkThis: () => {
+        console.log(this)
+      }
+    }
+
+    finalObject.checkThis() // window
+  </script>
+
+</head>
+<body>
+  .
+</body>
+</html>
